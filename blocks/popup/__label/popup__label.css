@@ -1,0 +1,7 @@
+.popup__label {
+  width: 100%;
+}
+
+.popup__label:first-child {
+  margin-bottom: 30px;
+}

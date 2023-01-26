@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Проект о интересных местах в мире. ">
+  <meta name="author" content="Зимина Анастасия">
+  <meta name="keywords" content=" Природа, Путешествия, Фотографии, Место">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="blocks/popup/__close-button/popup__close-button.css">
+</head>
+<body class="root">
+  <header class="header">
+    <img class="header__logo" src="./images/logo_light.svg" alt="Логотип Место"/>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__avatar" src="./images/profile__avatar.png" alt="Аватар пользователя">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" type="button"></button>
+        <p class="profile__job">Исследователь океана</p>
+      </div>
+      <button class="profile__add-button" type="button"></button>
+    </section>
+    <section class="elements">
+      <ul class="cards">
+        <li class="card">
+          <img class="card__image" src="./images/card-elbrus.png" alt="Гора Эльбрус"/>
+          <div class="card__info">
+            <p class="card__name">Гора Эльбрус</p>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+        <li class="card">
+          <img class="card__image" src="./images/norway.jpg" alt="Водопад в Норвегии"/>
+          <div class="card__info">
+            <p class="card__name">Норвегия</p>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+        <li class="card">
+          <img class="card__image" src="./images/aosta.jpg" alt="Аоста"/>
+          <div class="card__info">
+            <p class="card__name">Аоста</p>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+        <li class="card">
+          <img class="card__image" src="./images/wild%20lake.jpg" alt="Дикое озеро"/>
+          <div class="card__info">
+            <p class="card__name">Дикое озеро</p>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+        <li class="card">
+          <img class="card__image" src="./images/karachaevo.jpg" alt="Карачаевск"/>
+          <div class="card__info">
+            <p class="card__name">Карачаевск</p>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+        <li class="card">
+          <img class="card__image" src="./images/dombai.png" alt="Домбай"/>
+          <div class="card__info">
+            <p class="card__name">Домбай</p>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+  </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <form class="popup__form">
+        <h2 class="popup__form-title">Редактировать профиль</h2>
+        <label class="popup__label">
+          <input type="text" class="popup__input popup__input_type_name" placeholder="Ваше Имя">
+        </label>
+        <label class="popup__label">
+          <input type="text" class="popup__input popup__input_type_job" placeholder="Место работы">
+        </label>
+        <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+<script src="index.js"></script>
+</body>
+</html>
