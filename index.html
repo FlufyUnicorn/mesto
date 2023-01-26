@@ -8,7 +8,6 @@
   <meta name="keywords" content=" Природа, Путешествия, Фотографии, Место">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
-  <link rel="stylesheet" href="blocks/popup/__close-button/popup__close-button.css">
 </head>
 <body class="root">
   <header class="header">
@@ -29,42 +28,42 @@
         <li class="card">
           <img class="card__image" src="./images/card-elbrus.png" alt="Гора Эльбрус"/>
           <div class="card__info">
-            <p class="card__name">Гора Эльбрус</p>
+            <h2 class="card__name">Гора Эльбрус</h2>
             <button class="card__like-button" type="button"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__image" src="./images/norway.jpg" alt="Водопад в Норвегии"/>
           <div class="card__info">
-            <p class="card__name">Норвегия</p>
+            <h2 class="card__name">Норвегия</h2>
             <button class="card__like-button" type="button"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__image" src="./images/aosta.jpg" alt="Аоста"/>
           <div class="card__info">
-            <p class="card__name">Аоста</p>
+            <h2 class="card__name">Аоста</h2>
             <button class="card__like-button" type="button"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__image" src="./images/wild%20lake.jpg" alt="Дикое озеро"/>
           <div class="card__info">
-            <p class="card__name">Дикое озеро</p>
+            <h2 class="card__name">Дикое озеро</h2>
             <button class="card__like-button" type="button"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__image" src="./images/karachaevo.jpg" alt="Карачаевск"/>
           <div class="card__info">
-            <p class="card__name">Карачаевск</p>
+            <h2 class="card__name">Карачаевск</h2>
             <button class="card__like-button" type="button"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__image" src="./images/dombai.png" alt="Домбай"/>
           <div class="card__info">
-            <p class="card__name">Домбай</p>
+            <h2 class="card__name">Домбай</h2>
             <button class="card__like-button" type="button"></button>
           </div>
         </li>
@@ -77,18 +76,18 @@
   <div class="popup">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
-      <form class="popup__form">
-        <h2 class="popup__form-title">Редактировать профиль</h2>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="popup-form">
         <label class="popup__label">
-          <input type="text" class="popup__input popup__input_type_name" placeholder="Ваше Имя">
+          <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Ваше Имя">
         </label>
         <label class="popup__label">
-          <input type="text" class="popup__input popup__input_type_job" placeholder="Место работы">
+          <input type="text" class="popup__input popup__input_type_job" name="job" placeholder="Место работы">
         </label>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
-<script src="index.js"></script>
+<script src="./scripts/index.js"></script>
 </body>
 </html>

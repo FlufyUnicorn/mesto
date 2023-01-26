@@ -3,10 +3,11 @@
   width: 24px;
   height: 24px;
   border: 1px solid white;
-  background-image: url("../../../images/Edit Button.svg");
+  background-image: url("../../../images/edit-button.svg");
   background-repeat: no-repeat;
   background-position: center;
-  margin: 0;
+  background-size: 10px 10px;
+  margin: 5px 0 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,9 @@
 
 @media screen and (max-width: 767px) {
   .profile__edit-button {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px 7.5px;
+    padding: 5.25px;
   }
 }

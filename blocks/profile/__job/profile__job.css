@@ -8,9 +8,10 @@
   white-space: nowrap;
   overflow: hidden;
   grid-column: -3/-1;
+  max-width: 336px;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1279px) {
   .profile__job {
     text-align: center;
   }
