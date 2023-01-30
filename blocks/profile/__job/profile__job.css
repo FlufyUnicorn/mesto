@@ -7,11 +7,18 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  grid-column: -3/-1;
   max-width: 336px;
+  grid-area: profile__job;
+  margin-top: 8px;
 }
 
 @media screen and (max-width: 1279px) {
+  .profile__job {
+    text-align: left;
+    grid-column: 2/3;
+  }
+}
+@media screen and (max-width: 1023px) {
   .profile__job {
     text-align: center;
   }
@@ -22,5 +29,6 @@
     font-size: 14px;
     line-height: 17px;
     max-width: 282px;
+    margin-top: 8px;
   }
 }

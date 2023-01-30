@@ -15,12 +15,12 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 320px) {
   .header {
-    margin: 28px 27px 41px;
-    min-height: 56px;
     justify-content: start;
-    padding-bottom: 0;
+    padding-left: 27px;
+    padding-bottom: 31.6px;
+    margin: 28px 0 41px;
   }
 }
 
