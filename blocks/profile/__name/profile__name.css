@@ -8,9 +8,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-align: center;
   grid-area: profile__name;
   align-self: end;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__name {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 767px) {
