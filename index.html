@@ -22,70 +22,59 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="elements">
-      <ul class="cards">
-        <li class="card">
-          <img class="card__image" src="./images/card-elbrus.png" alt="Гора Эльбрус"/>
-          <div class="card__info">
-            <h2 class="card__name">Гора Эльбрус</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/norway.jpg" alt="Водопад в Норвегии"/>
-          <div class="card__info">
-            <h2 class="card__name">Норвегия</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/aosta.jpg" alt="Аоста"/>
-          <div class="card__info">
-            <h2 class="card__name">Аоста</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/wild%20lake.jpg" alt="Дикое озеро"/>
-          <div class="card__info">
-            <h2 class="card__name">Дикое озеро</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/karachaevo.jpg" alt="Карачаевск"/>
-          <div class="card__info">
-            <h2 class="card__name">Карачаевск</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/dombai.png" alt="Домбай"/>
-          <div class="card__info">
-            <h2 class="card__name">Домбай</h2>
-            <button class="card__like-button" type="button"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="cards"></ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup" id="popup_profile">
     <div class="popup__container">
-      <button class="popup__close-button" type="button"></button>
+      <button class="popup__close-button" id="profile_close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="popup-form">
+      <form class="popup__form" id="profile_form" name="popup-form">
         <label class="popup__label">
-          <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Ваше Имя">
+          <input type="text" class="popup__input" id="input_type_name" name="name" placeholder="Ваше Имя">
         </label>
         <label class="popup__label">
-          <input type="text" class="popup__input popup__input_type_job" name="job" placeholder="Место работы">
+          <input type="text" class="popup__input" id="input_type_job" name="job" placeholder="Место работы">
         </label>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
-<script src="./scripts/index.js"></script>
+  <div class="popup" id="popup_place">
+    <div class="popup__container">
+      <button class="popup__close-button" id="place_close" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="place_form" id="place_form" novalidate>
+        <label class="popup__label">
+          <input type="text" class="popup__input" id="input_type_place-name" placeholder="Название" name="new_place">
+        </label>
+        <label class="popup__label">
+          <input type="url" class="popup__input" id="input_type_link" placeholder="Ссылка на картинку" name="place_link">
+        </label>
+        <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_img" id="popup_image">
+    <div class="popup__img-wrapper">
+      <button class="popup__close-button popup__close-button_place_image" id="image_close" type="button"></button>
+      <img class="popup__img" src="#" alt="">
+      <h3 class="popup__img-description"></h3>
+    </div>
+  </div>
+  <template id="card">
+    <li class="card">
+      <button class="card__delete-button" type="button"></button>
+      <img class="card__image" src="#" alt=""/>
+      <div class="card__info">
+        <h2 class="card__name"></h2>
+        <button class="card__like-button" type="button"></button>
+      </div>
+    </li>
+  </template>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
