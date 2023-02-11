@@ -13,7 +13,7 @@ const placeInput = formElementPlace.elements.new_place
 const linkInput = formElementPlace.elements.place_link
 const cardTemplate = document.querySelector('#card').content
 const cards = document.querySelector('.cards')
-const closeButtons = document.querySelectorAll('.popup__close-button');
+const closeButtons = document.querySelectorAll('.popup__close-button')
 const popupPicture = document.querySelector('.popup__img')
 const popupCaption = document.querySelector('.popup__img-description')
 
@@ -22,12 +22,12 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-  return () => popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened')
 }
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup')
-  button.addEventListener('click', closePopup(popup))
+  button.addEventListener('click', () => closePopup(popup))
 });
 
 editButton.addEventListener('click', () => {
@@ -44,13 +44,13 @@ function handleFormSubmitProfile(evt) {
   evt.preventDefault()
   profileName.textContent = nameInput.value
   profileJob.textContent = jobInput.value
-  closePopup(popupProfile)()
+  closePopup(popupProfile)
 }
 
 formElementProfile.addEventListener('submit', handleFormSubmitProfile)
 
 function addCard(card) {
-  let cardElement = cardTemplate.querySelector('.card').cloneNode(true)
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true)
   const cardImage = cardElement.querySelector('.card__image')
   cardImage.src = card.link
   cardImage.alt = card.name
@@ -59,7 +59,7 @@ function addCard(card) {
     evt.target.classList.toggle('card__like-button_active')
   })
   cardElement.querySelector('.card__delete-button').addEventListener('click', function (evt) {
-    evt.target.closest('.card').remove();
+    evt.target.closest('.card').remove()
   })
   cardImage.addEventListener('click', function() {
     openPopup(popupImage)
@@ -78,6 +78,7 @@ function handleFormSubmitPlace(evt) {
   }
   const cardElement = addCard(item)
   cards.prepend(cardElement)
+  closePopup(popupPlace)
   placeInput.value=''
   linkInput.value=''
 }
@@ -111,7 +112,7 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(function (card) {
+initialCards.forEach( (card) => {
   const cardElement = addCard(card)
   cards.append(cardElement)
 })
