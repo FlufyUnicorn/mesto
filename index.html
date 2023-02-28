@@ -32,12 +32,14 @@
     <div class="popup__container">
       <button class="popup__close-button" id="profile_close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profile-form">
+      <form class="popup__form" name="profile-form" novalidate>
         <label class="popup__label">
-          <input type="text" class="popup__input" name="name" placeholder="Ваше Имя">
+          <input id="name-input" type="text" class="popup__input" name="name" placeholder="Ваше Имя" minlength="2" maxlength="40" required>
+          <span class="name-input-error popup__input-error"></span>
         </label>
         <label class="popup__label">
-          <input type="text" class="popup__input" name="job" placeholder="Место работы">
+          <input id="job-input" type="text" class="popup__input" name="job" placeholder="Место работы" minlength="2" maxlength="200" required>
+          <span class="job-input-error popup__input-error"></span>
         </label>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -49,10 +51,12 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="place-form">
         <label class="popup__label">
-          <input type="text" class="popup__input" placeholder="Название" name="new_place">
+          <input id="place-input" type="text" class="popup__input" placeholder="Название" name="new_place" required minlength="2" maxlength="30">
+          <span class="place-input-error popup__input-error"></span>
         </label>
         <label class="popup__label">
-          <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="place_link">
+          <input id="url-input" type="url" class="popup__input" placeholder="Ссылка на картинку" name="place_link" required>
+          <span class="url-input-error popup__input-error"></span>
         </label>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -76,5 +80,6 @@
     </li>
   </template>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

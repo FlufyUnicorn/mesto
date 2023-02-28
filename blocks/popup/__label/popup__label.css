@@ -1,7 +1,6 @@
 .popup__label {
   width: 100%;
-}
-
-.popup__label:first-child {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  min-height: 58px;
 }

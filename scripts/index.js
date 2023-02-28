@@ -17,12 +17,22 @@ const closeButtons = document.querySelectorAll('.popup__close-button')
 const popupPicture = document.querySelector('.popup__img')
 const popupCaption = document.querySelector('.popup__img-description')
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened')
-}
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened')
+  document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    }
+  })
+  popup.addEventListener('mousedown', evt => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup)
+    }
+  })
 }
 
 closeButtons.forEach((button) => {
@@ -95,6 +105,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
+
     name: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
