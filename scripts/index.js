@@ -17,28 +17,38 @@ const closeButtons = document.querySelectorAll('.popup__close-button')
 const popupPicture = document.querySelector('.popup__img')
 const popupCaption = document.querySelector('.popup__img-description')
 
+nameInput.value = profileName.textContent
+jobInput.value = profileJob.textContent
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closePopupEsc)
+  popup.removeEventListener('mousedown', closePopupClick)
+}
+
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
+  }
+}
+
+function closePopupClick(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popup)
+  }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened')
-  document.addEventListener('keydown', evt => {
-    if (evt.key === 'Escape') {
-      closePopup(popup)
-    }
-  })
-  popup.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(popup)
-    }
-  })
+  document.addEventListener('keydown', closePopupEsc)
+  popup.addEventListener('mousedown', closePopupClick)
 }
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup')
   button.addEventListener('click', () => closePopup(popup))
-});
+})
 
 editButton.addEventListener('click', () => {
   openPopup(popupProfile)
@@ -48,6 +58,8 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupPlace)
+  popupPlace.querySelector('.popup__save-button').classList.add('popup__save-button_inactive');
+  // popupPlace.querySelector('.popup__save-button').disabled = true
 })
 
 function handleFormSubmitProfile(evt) {
@@ -89,8 +101,7 @@ function handleFormSubmitPlace(evt) {
   const cardElement = addCard(item)
   cards.prepend(cardElement)
   closePopup(popupPlace)
-  placeInput.value=''
-  linkInput.value=''
+  evt.target.reset()
 }
 
 formElementPlace.addEventListener('submit', handleFormSubmitPlace)
