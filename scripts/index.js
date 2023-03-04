@@ -16,6 +16,7 @@ const cards = document.querySelector('.cards')
 const closeButtons = document.querySelectorAll('.popup__close-button')
 const popupPicture = document.querySelector('.popup__img')
 const popupCaption = document.querySelector('.popup__img-description')
+const saveButton = popupPlace.querySelector('.popup__save-button')
 
 nameInput.value = profileName.textContent
 jobInput.value = profileJob.textContent
@@ -35,7 +36,7 @@ function closePopupEsc(evt) {
 
 function closePopupClick(evt) {
   if (evt.target.classList.contains('popup')) {
-    closePopup(popup)
+    closePopup(evt.target)
   }
 }
 
@@ -58,8 +59,8 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupPlace)
-  popupPlace.querySelector('.popup__save-button').classList.add('popup__save-button_inactive');
-  // popupPlace.querySelector('.popup__save-button').disabled = true
+  saveButton.classList.add('popup__save-button_inactive');
+  saveButton.disabled = true
 })
 
 function handleFormSubmitProfile(evt) {
