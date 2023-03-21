@@ -1,5 +1,4 @@
 import {Card} from "./Card.js"
-import {openPopup, closePopup} from "./utils.js"
 
 const editButton = document.querySelector('.profile__edit-button')
 const addButton = document.querySelector('.profile__add-button')
@@ -15,9 +14,37 @@ const placeInput = formElementPlace.elements.new_place
 const linkInput = formElementPlace.elements.place_link
 const cards = document.querySelector('.cards')
 const closeButtons = document.querySelectorAll('.popup__close-button')
+const popupPicture = document.querySelector('.popup__img')
+const popupCaption = document.querySelector('.popup__img-description')
+const popupImage = document.querySelector('#popup_image')
 
 nameInput.value = profileName.textContent
 jobInput.value = profileJob.textContent
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened')
+  document.addEventListener('keydown', closePopupEsc)
+  popup.addEventListener('mousedown', closePopupClick)
+}
+
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
+  }
+}
+
+function closePopupClick(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target)
+  }
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closePopupEsc)
+  popup.removeEventListener('mousedown', closePopupClick)
+}
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup')
@@ -87,8 +114,15 @@ const initialCards = [
 ]
 
 function createCard(item) {
-  const card = new Card(item, '#card')
+  const card = new Card(item, '#card', handleCardClick)
   return card.generateCard()
+}
+
+function handleCardClick(name, link) {
+  popupCaption.textContent = name
+  popupPicture.src = link
+  popupPicture.alt = name
+  openPopup(popupImage)
 }
 
 initialCards.forEach( (item) => {
