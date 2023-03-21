@@ -13,18 +13,25 @@ class FormValidator {
     this._form = form
   }
   enableValidation() {
-      this._setEventListeners(this._form, this._data)
+      this._setEventListeners()
   }
 
-  _setEventListeners = (formElement) => {
-    this._inputList = Array.from(formElement.querySelectorAll(this._data.inputSelector))
-    this._buttonElement = formElement.querySelector(this._data.saveButtonSelector)
+  _setEventListeners = () => {
+    this._inputList = Array.from(this._form.querySelectorAll(this._data.inputSelector))
+    this._buttonElement = this._form.querySelector(this._data.saveButtonSelector)
     this._toggleButtonState()
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._isValid(formElement, inputElement)
+        this._isValid(inputElement)
         this._toggleButtonState()
       })
+    })
+  }
+
+  _resetValidation = () => {
+    this._toggleButtonState()
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
     })
   }
 
@@ -44,31 +51,25 @@ class FormValidator {
     })
   }
 
-  _isValid = (formElement, inputElement) => {
+  _isValid = (inputElement) => {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement, inputElement.validationMessage)
+      this._showInputError(inputElement, inputElement.validationMessage)
     } else {
-      this._hideInputError(formElement, inputElement)
+      this._hideInputError(inputElement)
     }
   }
 
-  _showInputError = (formElement, inputElement, errorMessage) => {
-    this._errorElement = formElement.querySelector(`.${inputElement.id}-error`)
+  _showInputError = (inputElement, errorMessage) => {
+    this._errorElement = this._form.querySelector(`.${inputElement.id}-error`)
     inputElement.classList.add(this._data.inputWithErrorClass)
     this._errorElement.textContent = errorMessage
     this._errorElement.classList.add(this._data.inputErrorTextActiveClass)
   }
 
-  _hideInputError = (formElement, inputElement) => {
-    this._errorElement = formElement.querySelector(`.${inputElement.id}-error`)
+  _hideInputError = (inputElement) => {
+    this._errorElement = this._form.querySelector(`.${inputElement.id}-error`)
     inputElement.classList.remove(this._data.inputWithErrorClass)
     this._errorElement.classList.remove(this._data.inputErrorTextActiveClass)
     this._errorElement.textContent = ''
   }
 }
-
-const formList = Array.from(document.querySelectorAll('.popup__form'))
-formList.forEach((formElement) => {
-  const validationForm = new FormValidator(formValidationConfig, formElement)
-  validationForm.enableValidation()
-})

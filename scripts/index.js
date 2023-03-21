@@ -1,6 +1,5 @@
 import {Card} from "./Card.js"
-import {openPopup, closePopup} from "./utils.js";
-
+import {openPopup, closePopup} from "./utils.js"
 
 const editButton = document.querySelector('.profile__edit-button')
 const addButton = document.querySelector('.profile__add-button')
@@ -16,7 +15,6 @@ const placeInput = formElementPlace.elements.new_place
 const linkInput = formElementPlace.elements.place_link
 const cards = document.querySelector('.cards')
 const closeButtons = document.querySelectorAll('.popup__close-button')
-const saveButton = popupPlace.querySelector('.popup__save-button')
 
 nameInput.value = profileName.textContent
 jobInput.value = profileJob.textContent
@@ -27,15 +25,15 @@ closeButtons.forEach((button) => {
 })
 
 editButton.addEventListener('click', () => {
+  validationFormProfile._resetValidation()
   openPopup(popupProfile)
   nameInput.value = profileName.textContent
   jobInput.value = profileJob.textContent
 })
 
 addButton.addEventListener('click', () => {
+  validationFormPlace._resetValidation()
   openPopup(popupPlace)
-  saveButton.classList.add('popup__save-button_inactive');
-  saveButton.disabled = true
 })
 
 function handleFormSubmitProfile(evt) {
@@ -53,10 +51,7 @@ function handleFormSubmitPlace(evt) {
     name: placeInput.value,
     link: linkInput.value
   }
-
-  const card = new Card(item, '.card')
-  const cardElement = card.generateCard()
-  cards.prepend(cardElement)
+  cards.prepend(createCard(item))
   closePopup(popupPlace)
   evt.target.reset()
 }
@@ -91,8 +86,16 @@ const initialCards = [
   }
 ]
 
+function createCard(item) {
+  const card = new Card(item, '#card')
+  return card.generateCard()
+}
+
 initialCards.forEach( (item) => {
-  const card = new Card(item, '.card')
-  const cardElement = card.generateCard()
-  cards.append(cardElement)
+  cards.append(createCard(item))
 })
+
+const validationFormProfile = new FormValidator(formValidationConfig, formElementProfile)
+validationFormProfile.enableValidation()
+const validationFormPlace = new FormValidator(formValidationConfig, formElementPlace)
+validationFormPlace.enableValidation()
