@@ -44,6 +44,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened')
   document.removeEventListener('keydown', closePopupEsc)
   popup.removeEventListener('mousedown', closePopupClick)
+  popup.querySelector('.popup__form').reset()
 }
 
 closeButtons.forEach((button) => {
@@ -52,14 +53,14 @@ closeButtons.forEach((button) => {
 })
 
 editButton.addEventListener('click', () => {
-  validationFormProfile._resetValidation()
+  validationFormProfile.resetValidation()
   openPopup(popupProfile)
   nameInput.value = profileName.textContent
   jobInput.value = profileJob.textContent
 })
 
 addButton.addEventListener('click', () => {
-  validationFormPlace._resetValidation()
+  validationFormPlace.resetValidation()
   openPopup(popupPlace)
 })
 
