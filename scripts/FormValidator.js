@@ -12,6 +12,7 @@ class FormValidator {
     this._data = data
     this._form = form
   }
+
   enableValidation() {
       this._setEventListeners()
   }

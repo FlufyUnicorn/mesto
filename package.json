@@ -1,0 +1,36 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "На этом сайте можно рассказать об интересных местах, в которых вы побывали.\r Есть возможность редактирования имени и профессии пользователя\r .\r ### Используемые технологии:\r 1. HTML и CSS\r 2. Flexbox и Grid Layout\r 3. Формы\r 4. Медиа-запросы\r 5. Организация файлов по БЭМ nested\r 6.JavaScript (открытие/закрытие попапа, сохранение информации в нем)",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlufyUnicorn/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlufyUnicorn/mesto/issues"
+  },
+  "homepage": "https://github.com/FlufyUnicorn/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^5.1.15",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "postcss-loader": "^7.1.0",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.1"
+  },
+  "dependencies": {
+    "core-js": "^3.29.1"
+  }
+}

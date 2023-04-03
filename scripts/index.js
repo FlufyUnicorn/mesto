@@ -1,4 +1,8 @@
 import {Card} from "./Card.js"
+import Section from "./Section.js"
+import PopupWithForm from "./PopupWithForm.js"
+import PopupWithImage from "./PopupWithImage.js"
+import UserInfo from "./UserInfo.js"
 
 const editButton = document.querySelector('.profile__edit-button')
 const addButton = document.querySelector('.profile__add-button')
@@ -8,83 +12,40 @@ const formElementProfile = document.forms['profile-form']
 const formElementPlace = document.forms['place-form']
 const nameInput = formElementProfile.elements.name
 const jobInput = formElementProfile.elements.job
-const popupProfile = document.querySelector('#popup_profile')
-const popupPlace = document.querySelector('#popup_place')
-const placeInput = formElementPlace.elements.new_place
-const linkInput = formElementPlace.elements.place_link
 const cards = document.querySelector('.cards')
-const closeButtons = document.querySelectorAll('.popup__close-button')
-const popupPicture = document.querySelector('.popup__img')
-const popupCaption = document.querySelector('.popup__img-description')
-const popupImage = document.querySelector('#popup_image')
 
 nameInput.value = profileName.textContent
 jobInput.value = profileJob.textContent
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened')
-  document.addEventListener('keydown', closePopupEsc)
-  popup.addEventListener('mousedown', closePopupClick)
-}
-
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup)
-  }
-}
-
-function closePopupClick(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(evt.target)
-  }
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened')
-  document.removeEventListener('keydown', closePopupEsc)
-  popup.removeEventListener('mousedown', closePopupClick)
-  popup.querySelector('.popup__form').reset()
-}
-
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup')
-  button.addEventListener('click', () => closePopup(popup))
-})
+const user = new UserInfo({userNameSelector: '#name-input', userInfoSelector: '#job-input'})
 
 editButton.addEventListener('click', () => {
   validationFormProfile.resetValidation()
-  openPopup(popupProfile)
-  nameInput.value = profileName.textContent
-  jobInput.value = profileJob.textContent
+  popupProfile.open()
+  user.getUserInfo()
 })
 
 addButton.addEventListener('click', () => {
   validationFormPlace.resetValidation()
-  openPopup(popupPlace)
+  popupPlace.open()
 })
 
-function handleFormSubmitProfile(evt) {
-  evt.preventDefault()
-  profileName.textContent = nameInput.value
-  profileJob.textContent = jobInput.value
-  closePopup(popupProfile)
+function handleFormSubmitProfile(data) {
+  user.setUserInfo({name: nameInput.value, info: jobInput.value})
+  //profileName.textContent = nameInput.value
+  //profileJob.textContent = jobInput.value
+  popupProfile.close()
 }
 
-formElementProfile.addEventListener('submit', handleFormSubmitProfile)
-
-function handleFormSubmitPlace(evt) {
-  evt.preventDefault()
+function handleFormSubmitPlace(data) {
   const item = {
-    name: placeInput.value,
-    link: linkInput.value
+    name: data.new_place,
+    link: data.place_link
   }
+  console.log(item)
   cards.prepend(createCard(item))
-  closePopup(popupPlace)
-  evt.target.reset()
+  popupPlace.close()
 }
-
-formElementPlace.addEventListener('submit', handleFormSubmitPlace)
 
 const initialCards = [
   {
@@ -120,15 +81,22 @@ function createCard(item) {
 }
 
 function handleCardClick(name, link) {
-  popupCaption.textContent = name
-  popupPicture.src = link
-  popupPicture.alt = name
-  openPopup(popupImage)
+  popupImage.open(name, link)
 }
 
-initialCards.forEach( (item) => {
-  cards.append(createCard(item))
-})
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (cardItem) => {
+      cardsList.addItem(createCard(cardItem))
+    },
+  },
+  '.cards'
+);
+cardsList.renderItems()
+
+const popupPlace = new PopupWithForm({popupSelector:'#popup_place', handleFormSubmit:handleFormSubmitPlace })
+const popupImage = new PopupWithImage('#popup_image')
+const popupProfile = new PopupWithForm({popupSelector: '#popup_profile', handleFormSubmit: handleFormSubmitProfile})
 
 const validationFormProfile = new FormValidator(formValidationConfig, formElementProfile)
 validationFormProfile.enableValidation()
