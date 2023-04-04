@@ -6,7 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 import UserInfo from "../components/UserInfo.js"
 import FormValidator from "../components/FormValidator"
-import {formValidationConfig} from "../components/FormValidator";
+import {formValidationConfig} from "../components/FormValidator"
 
 const editButton = document.querySelector('.profile__edit-button')
 const addButton = document.querySelector('.profile__add-button')
