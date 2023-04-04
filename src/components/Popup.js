@@ -1,5 +1,3 @@
-const closeButtons = document.querySelectorAll('.popup__close-button')
-
 export default class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector
@@ -7,15 +5,19 @@ export default class Popup {
     this._handleClickClose = this._handleClickClose.bind(this)
     this.close = this.close.bind(this)
     this._popup = document.querySelector(this._popupSelector)
-    this.setEventListeners()
+    this._closeButton = this._popup.querySelector('.popup__close-button')
   }
   open() {
+    document.addEventListener('keydown', this._handleEscClose)
+    this._popup.addEventListener('mousedown', this._handleClickClose)
     this._popup.classList.add('popup_opened')
+    this.setEventListeners()
   }
 
   close () {
     this._popup.classList.remove('popup_opened')
-    this.removeEventListeners()
+    document.removeEventListener('keydown', this._handleEscClose)
+    this._popup.removeEventListener('mousedown', this._handleClickClose)
   }
 
   _handleEscClose (evt) {
@@ -31,15 +33,6 @@ export default class Popup {
   }
 
   setEventListeners() {
-    closeButtons.forEach((button) => {
-      button.addEventListener('click', this.close)
-    })
-    document.addEventListener('keydown', this._handleEscClose)
-    this._popup.addEventListener('mousedown', this._handleClickClose)
-  }
-
-  removeEventListeners() {
-    document.removeEventListener('keydown', this._handleEscClose)
-    this._popup.removeEventListener('mousedown', this._handleClickClose)
+    this._closeButton.addEventListener('click', this.close)
   }
 }

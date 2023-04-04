@@ -1,14 +1,25 @@
 export default class UserInfo {
   constructor({userNameSelector, userInfoSelector}) {
-    this._name = document.querySelector(userNameSelector)
-    this._info = document.querySelector(userInfoSelector)
+    this._inputName = document.querySelector(userNameSelector)
+    this._inputInfo = document.querySelector(userInfoSelector)
+    this._name = document.querySelector('.profile__name')
+    this._info = document.querySelector('.profile__job')
   }
-  getUserInfo () {
-    this._name.value = document.querySelector('.profile__name').textContent
-    this._info.value = document.querySelector('.profile__job').textContent
+
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      info: this._info.textContent,
+    }
   }
-  setUserInfo() {
-    document.querySelector('.profile__name').textContent = this._name.value
-    document.querySelector('.profile__job').textContent = this._info.value
+
+  setUserInfoPopup(data) {
+    this._inputName.value = data.name
+    this._inputInfo.value = data.info
+  }
+
+  setUserInfoProfile(data) {
+    this._name.textContent = data.name
+    this._info.textContent = data.job
   }
 }

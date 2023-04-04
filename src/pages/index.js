@@ -25,12 +25,11 @@ validationFormProfile.enableValidation()
 const validationFormPlace = new FormValidator(formValidationConfig, formElementPlace)
 validationFormPlace.enableValidation()
 
-user.getUserInfo()
-
 editButton.addEventListener('click', () => {
   validationFormProfile.resetValidation()
+  const userInfo = user.getUserInfo()
+  user.setUserInfoPopup(userInfo)
   popupProfile.open()
-  return user.getUserInfo()
 })
 
 addButton.addEventListener('click', () => {
@@ -38,8 +37,8 @@ addButton.addEventListener('click', () => {
   popupPlace.open()
 })
 
-function handleFormSubmitProfile() {
-  user.setUserInfo()
+function handleFormSubmitProfile(data) {
+  user.setUserInfoProfile(data)
   popupProfile.close()
 }
 
