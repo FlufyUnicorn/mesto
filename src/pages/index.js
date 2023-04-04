@@ -1,28 +1,36 @@
-import {Card} from "./Card.js"
-import Section from "./Section.js"
-import PopupWithForm from "./PopupWithForm.js"
-import PopupWithImage from "./PopupWithImage.js"
-import UserInfo from "./UserInfo.js"
+import './index.css'
+
+import {Card} from "../components/Card.js"
+import Section from "../components/Section.js"
+import PopupWithForm from "../components/PopupWithForm.js"
+import PopupWithImage from "../components/PopupWithImage.js"
+import UserInfo from "../components/UserInfo.js"
+import FormValidator from "../components/FormValidator"
+import {formValidationConfig} from "../components/FormValidator";
 
 const editButton = document.querySelector('.profile__edit-button')
 const addButton = document.querySelector('.profile__add-button')
-const profileName = document.querySelector('.profile__name')
-const profileJob = document.querySelector('.profile__job')
 const formElementProfile = document.forms['profile-form']
 const formElementPlace = document.forms['place-form']
-const nameInput = formElementProfile.elements.name
-const jobInput = formElementProfile.elements.job
 const cards = document.querySelector('.cards')
 
-nameInput.value = profileName.textContent
-jobInput.value = profileJob.textContent
-
 const user = new UserInfo({userNameSelector: '#name-input', userInfoSelector: '#job-input'})
+
+const popupPlace = new PopupWithForm({popupSelector:'#popup_place', handleFormSubmit:handleFormSubmitPlace })
+const popupImage = new PopupWithImage('#popup_image')
+const popupProfile = new PopupWithForm({popupSelector: '#popup_profile', handleFormSubmit: handleFormSubmitProfile})
+
+const validationFormProfile = new FormValidator(formValidationConfig, formElementProfile)
+validationFormProfile.enableValidation()
+const validationFormPlace = new FormValidator(formValidationConfig, formElementPlace)
+validationFormPlace.enableValidation()
+
+user.getUserInfo()
 
 editButton.addEventListener('click', () => {
   validationFormProfile.resetValidation()
   popupProfile.open()
-  user.getUserInfo()
+  return user.getUserInfo()
 })
 
 addButton.addEventListener('click', () => {
@@ -30,10 +38,8 @@ addButton.addEventListener('click', () => {
   popupPlace.open()
 })
 
-function handleFormSubmitProfile(data) {
-  user.setUserInfo({name: nameInput.value, info: jobInput.value})
-  //profileName.textContent = nameInput.value
-  //profileJob.textContent = jobInput.value
+function handleFormSubmitProfile() {
+  user.setUserInfo()
   popupProfile.close()
 }
 
@@ -42,7 +48,6 @@ function handleFormSubmitPlace(data) {
     name: data.new_place,
     link: data.place_link
   }
-  console.log(item)
   cards.prepend(createCard(item))
   popupPlace.close()
 }
@@ -93,12 +98,3 @@ const cardsList = new Section({
   '.cards'
 );
 cardsList.renderItems()
-
-const popupPlace = new PopupWithForm({popupSelector:'#popup_place', handleFormSubmit:handleFormSubmitPlace })
-const popupImage = new PopupWithImage('#popup_image')
-const popupProfile = new PopupWithForm({popupSelector: '#popup_profile', handleFormSubmit: handleFormSubmitProfile})
-
-const validationFormProfile = new FormValidator(formValidationConfig, formElementProfile)
-validationFormProfile.enableValidation()
-const validationFormPlace = new FormValidator(formValidationConfig, formElementPlace)
-validationFormPlace.enableValidation()

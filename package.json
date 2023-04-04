@@ -4,6 +4,8 @@
   "description": "На этом сайте можно рассказать об интересных местах, в которых вы побывали.\r Есть возможность редактирования имени и профессии пользователя\r .\r ### Используемые технологии:\r 1. HTML и CSS\r 2. Flexbox и Grid Layout\r 3. Формы\r 4. Медиа-запросы\r 5. Организация файлов по БЭМ nested\r 6.JavaScript (открытие/закрытие попапа, сохранение информации в нем)",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",

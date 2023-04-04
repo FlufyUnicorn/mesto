@@ -1,4 +1,4 @@
-const formValidationConfig = {
+export const formValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   saveButtonSelector: '.popup__save-button',
@@ -7,7 +7,7 @@ const formValidationConfig = {
   saveButtonInactiveClass: 'popup__save-button_inactive',
 }
 
-class FormValidator {
+export default class FormValidator {
   constructor(data, form) {
     this._data = data
     this._form = form

@@ -1,8 +1,83 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Проект о интересных местах в мире. ">
+  <meta name="author" content="Зимина Анастасия">
+  <meta name="keywords" content=" Природа, Путешествия, Фотографии, Место">
+  <title>Mesto</title>
+
 </head>
-<body>
-<h1>Hello</h1>
-</body>
-</html>
+<body class="root">
+ <header class="header">
+   <img class="header__logo" src="<%=require('./images/logo_light.svg')%>" alt="Логотип Место"/>
+ </header>
+ <main class="content">
+   <section class="profile">
+     <img class="profile__avatar" src="<%=require('./images/profile__avatar.png')%>" alt="Аватар пользователя">
+     <h1 class="profile__name">Жак-Ив Кусто</h1>
+     <button class="profile__edit-button" type="button"></button>
+     <p class="profile__job">Исследователь океана</p>
+     <button class="profile__add-button" type="button"></button>
+   </section>
+   <section class="elements">
+     <ul class="cards"></ul>
+   </section>
+ </main>
+ <footer class="footer">
+   <p class="footer__copyright">© 2020 Mesto Russia</p>
+ </footer>
+ <div class="popup" id="popup_profile">
+   <div class="popup__container">
+     <button class="popup__close-button" id="profile_close" type="button"></button>
+     <h2 class="popup__title">Редактировать профиль</h2>
+     <form class="popup__form" name="profile-form" novalidate>
+       <label class="popup__label">
+         <input id="name-input" type="text" class="popup__input" name="name" placeholder="Ваше Имя" minlength="2" maxlength="40" required>
+         <span class="name-input-error popup__input-error-text"></span>
+       </label>
+       <label class="popup__label">
+         <input id="job-input" type="text" class="popup__input" name="job" placeholder="Место работы" minlength="2" maxlength="200" required>
+         <span class="job-input-error popup__input-error-text"></span>
+       </label>
+       <button class="popup__save-button" type="submit">Сохранить</button>
+     </form>
+   </div>
+ </div>
+ <div class="popup" id="popup_place">
+   <div class="popup__container">
+     <button class="popup__close-button" id="place_close" type="button"></button>
+     <h2 class="popup__title">Новое место</h2>
+     <form class="popup__form" name="place-form">
+       <label class="popup__label">
+         <input id="place-input" type="text" class="popup__input" placeholder="Название" name="new_place" required minlength="2" maxlength="30">
+         <span class="place-input-error popup__input-error-text"></span>
+       </label>
+       <label class="popup__label">
+         <input id="url-input" type="url" class="popup__input" placeholder="Ссылка на картинку" name="place_link" required>
+         <span class="url-input-error popup__input-error-text"></span>
+       </label>
+       <button class="popup__save-button" type="submit">Сохранить</button>
+     </form>
+   </div>
+ </div>
+ <div class="popup popup_img" id="popup_image">
+   <div class="popup__img-wrapper">
+     <button class="popup__close-button popup__close-button_place_image" id="image_close" type="button"></button>
+     <img class="popup__img" src="#" alt="">
+     <h3 class="popup__img-description"></h3>
+   </div>
+ </div>
+ <template id="card">
+   <li class="card">
+     <button class="card__delete-button" type="button"></button>
+     <img class="card__image" src="#" alt=""/>
+     <div class="card__info">
+       <h2 class="card__name"></h2>
+       <button class="card__like-button" type="button"></button>
+     </div>
+   </li>
+ </template>
+ </body>
+ </html>
