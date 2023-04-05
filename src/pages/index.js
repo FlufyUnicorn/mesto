@@ -14,11 +14,15 @@ const formElementProfile = document.forms['profile-form']
 const formElementPlace = document.forms['place-form']
 const cards = document.querySelector('.cards')
 
-const user = new UserInfo({userNameSelector: '#name-input', userInfoSelector: '#job-input'})
+
+const user = new UserInfo({userNameSelector: '.profile__name', userInfoSelector: '.profile__job'})
 
 const popupPlace = new PopupWithForm({popupSelector:'#popup_place', handleFormSubmit:handleFormSubmitPlace })
+popupPlace.setEventListeners()
 const popupImage = new PopupWithImage('#popup_image')
+popupImage.setEventListeners()
 const popupProfile = new PopupWithForm({popupSelector: '#popup_profile', handleFormSubmit: handleFormSubmitProfile})
+popupProfile.setEventListeners()
 
 const validationFormProfile = new FormValidator(formValidationConfig, formElementProfile)
 validationFormProfile.enableValidation()
@@ -28,7 +32,8 @@ validationFormPlace.enableValidation()
 editButton.addEventListener('click', () => {
   validationFormProfile.resetValidation()
   const userInfo = user.getUserInfo()
-  user.setUserInfoPopup(userInfo)
+  document.querySelector('#name-input') .value = userInfo.name
+  document.querySelector('#job-input') .value = userInfo.info
   popupProfile.open()
 })
 
@@ -38,7 +43,7 @@ addButton.addEventListener('click', () => {
 })
 
 function handleFormSubmitProfile(data) {
-  user.setUserInfoProfile(data)
+  user.setUserInfo(data)
   popupProfile.close()
 }
 
