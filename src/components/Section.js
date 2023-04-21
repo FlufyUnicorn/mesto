@@ -11,4 +11,8 @@ export default class Section {
       this._renderer(item)
     })
   }
+
+  addItemReverse(element) {
+    this._container.append(element)
+  }
 }

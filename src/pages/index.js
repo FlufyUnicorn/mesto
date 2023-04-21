@@ -6,17 +6,19 @@ import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 import UserInfo from "../components/UserInfo.js"
 import FormValidator from "../components/FormValidator"
-import {formValidationConfig} from "../components/FormValidator"
 import Api from "../components/Api"
 import PopupConfirm from "../components/PopupConfirm"
-
-const editButton = document.querySelector('.profile__edit-button')
-const addButton = document.querySelector('.profile__add-button')
-const formElementProfile = document.forms['profile-form']
-const formElementPlace = document.forms['place-form']
-const formElementAvatar = document.forms['avatar-form']
-
-const user = new UserInfo({userNameSelector: '.profile__name', userInfoSelector: '.profile__job', userAvatarSelector:'.profile__avatar-img'})
+import {formValidationConfig} from "../components/FormValidator"
+import {
+  editButton,
+  addButton,
+  formElementProfile,
+  formElementPlace,
+  formElementAvatar,
+  nameInput,
+  jobInput
+}
+  from "../components/constants"
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-64",
@@ -25,6 +27,8 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 })
+
+const user = new UserInfo({userNameSelector: '.profile__name', userInfoSelector: '.profile__job', userAvatarSelector:'.profile__avatar-img'})
 
 const popupPlace = new PopupWithForm({popupSelector:'#popup_place', handleFormSubmit:handleFormSubmitPlace })
 popupPlace.setEventListeners()
@@ -36,7 +40,6 @@ const popupDelete = new PopupConfirm('.popup_delete', handleFormSubmitDelete)
 popupDelete.setEventListeners()
 const popupAvatar = new PopupWithForm({popupSelector: '#popup_avatar', handleFormSubmit: handleFormSubmitAvatar})
 popupAvatar.setEventListeners()
-
 
 const validationFormProfile = new FormValidator(formValidationConfig, formElementProfile)
 validationFormProfile.enableValidation()
@@ -55,8 +58,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 editButton.addEventListener('click', () => {
   const userInfo = user.getUserInfo()
   popupProfile.setInputValue(userInfo)
-  document.querySelector('#name-input').value = userInfo.name
-  document.querySelector('#job-input').value = userInfo.about
+  nameInput.value = userInfo.name
+  jobInput.value = userInfo.about
   popupProfile.open()
   validationFormProfile.resetValidation()
 })
@@ -151,7 +154,7 @@ function handleCardLike(cardId, isLiked, card) {
 
 const cardsList = new Section({
     renderer: (cardItem) => {
-      cardsList.addItem(createCard(cardItem))
+      cardsList.addItemReverse(createCard(cardItem))
     },
   },
   '.cards'
